@@ -49,10 +49,10 @@
         <div class="card-columns-vertical mt-1">
         <h5 class="">Exam results</h5>
             {% for submitted_answers in extract_answers %}
-                {% if choice correct %}
+                {% if choice.correct %}
                 <h5>{{choice}}</h5>
                 {% endif %}
-                {% if choice correct %}
+                {% if choice.incorrect %}
                 <h5>{{choice}}</h5>
                 {% endif %}
             {% endfor %}    
