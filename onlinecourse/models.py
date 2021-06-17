@@ -64,8 +64,7 @@ class Course(models.Model):
     is_enrolled = False
 
     def __str__(self):
-        return "Name: " + self.name + "," + \
-               "Description: " + self.description
+        return self.name
 
 
 # Lesson model
@@ -74,6 +73,9 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 
 # Enrollment model
@@ -104,6 +106,9 @@ class Enrollment(models.Model):
 class Question(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     qustion_content = models.TextField()
+    
+    def __str__(self):
+        return self.qustion_content
 
 
     # <HINT> A sample model method to calculate if learner get the score of the question
@@ -125,10 +130,20 @@ class Question(models.Model):
     # Other fields and methods you would like to design
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_content = models.TextField()
+    choice_content = models.CharField(max_length=200)
+    C1 = models.IntegerField(default=0)
+    C2 = models.IntegerField(default=0)
+    N1 = models.IntegerField(default=0)
+    N2 = models.IntegerField(default=0)
+    N3 = models.IntegerField(default=0)
+    N4 = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_content
     
     def get_selected_choice(self):
         selected_choices = self.choice_set
+        return self.get_selected_choice
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
@@ -138,4 +153,7 @@ class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     choices = models.ManyToManyField(Choice)
     choices = models.ForeignKey(Choice, on_delete=models.CASCADE)
+
+    #  def get_result(self):
+
 #    Other fields and methods you would like to design
