@@ -131,12 +131,6 @@ class Question(models.Model):
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_content = models.CharField(max_length=200)
-    C1 = models.IntegerField(default=0)
-    C2 = models.IntegerField(default=0)
-    N1 = models.IntegerField(default=0)
-    N2 = models.IntegerField(default=0)
-    N3 = models.IntegerField(default=0)
-    N4 = models.IntegerField(default=0)
 
     def __str__(self):
         return self.choice_content
